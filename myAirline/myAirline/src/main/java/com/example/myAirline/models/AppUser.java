@@ -112,6 +112,18 @@ public class AppUser implements UserDetails {
     public boolean isEnabled() {
         return this.isEnabled;
     }
+
+
+    @Override
+    public String toString() {
+        return this.email + " (" + this.firstName + " " + this.lastName + ")";
+    }
+
+
+    @Override
+    public boolean equals(Object appUser) {
+        return this.email.equals(((AppUser) appUser).getEmail());
+    }
     
     
 //////// 

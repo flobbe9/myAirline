@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.myAirline.enums.AppUserRole;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +26,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 public class AppUser implements UserDetails {
     
     @Id
@@ -32,6 +34,7 @@ public class AppUser implements UserDetails {
     private Long id;
 
     @Column(nullable = false, unique = true)
+    @EqualsAndHashCode.Include
     private String email;
 
     @Column(nullable = false)
@@ -116,13 +119,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public String toString() {
-        return this.email + " (" + this.firstName + " " + this.lastName + ")";
-    }
-
-
-    @Override
-    public boolean equals(Object appUser) {
-        return this.email.equals(((AppUser) appUser).getEmail());
+        return this.email;
     }
     
     

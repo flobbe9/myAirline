@@ -33,6 +33,7 @@ public class AppUser implements UserDetails {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -59,12 +60,16 @@ public class AppUser implements UserDetails {
 
     // private List<Booking> bookings; // TODO: uncomment when Booking is created
 
+    @EqualsAndHashCode.Exclude
     private Boolean isAccountNonExpired = true;
 
+    @EqualsAndHashCode.Exclude
     private Boolean isAccountNonLocked = true;
 
+    @EqualsAndHashCode.Exclude
     private Boolean isCredentialsNonExpired = true;
 
+    @EqualsAndHashCode.Exclude
     private Boolean isEnabled = false;
 
 

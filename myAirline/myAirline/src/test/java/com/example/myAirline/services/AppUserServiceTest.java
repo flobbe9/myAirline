@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +18,7 @@ import com.example.myAirline.models.AppUser;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestMethodOrder(OrderAnnotation.class)
 public class AppUserServiceTest {
     
     @Autowired
@@ -27,30 +31,17 @@ public class AppUserServiceTest {
                                           "Schikarski",
                                           LocalDate.of(2001, 02, 12));
 
-                                          private AppUser appUser2 = new AppUser("florin.schikarski@gmail.com",
-                                          "password",
-                                          AppUserRole.USER,
-                                          "Florin",
-                                          "Schikarski",
-                                          LocalDate.of(2001, 02, 12));
-
-    private AppUser returnedAppUser;
-
 
     @Test
+    @Order(1)
     void testAddNew() {
-
-        returnedAppUser = appUserService.addNew(appUser);
-
-        assertEquals(appUser, returnedAppUser);
+        assertEquals(appUser, appUserService.addNew(appUser));
     }
 
 
     @Test
+    @Order(2)
     void testGetByEmail() {
-
-        appUserService.addNew(appUser);
-
         assertEquals(appUser, appUserService.getByEmail("florin.schikarski@gmail.com"));
     }
 }

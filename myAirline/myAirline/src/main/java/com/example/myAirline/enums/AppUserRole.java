@@ -15,6 +15,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import lombok.AllArgsConstructor;
 
 
+/**
+ * Defines the ROLE of an AppUser needed for a GrantedAuthority. Each role has multple permissions ({@link AppUserPermission}).
+ */
 @AllArgsConstructor
 public enum AppUserRole {
     USER(new HashSet<>(Arrays.asList(USER_READ, USER_WRITE))),

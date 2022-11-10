@@ -79,6 +79,7 @@ public class AppUser implements UserDetails {
                    String firstName, 
                    String lastName, 
                    LocalDate birthday) {
+
         this.email = email;
         this.password = password;
         this.role = role;
@@ -91,50 +92,55 @@ public class AppUser implements UserDetails {
     
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         return this.role.getGrantedAuthorities();
     }
 
 
     @Override
     public String getUsername() {
+
         return this.email;
     }
 
 
     @Override
     public boolean isAccountNonExpired() {
+
         return this.isAccountNonExpired;
     }
 
 
     @Override
     public boolean isAccountNonLocked() {
+
         return this.isAccountNonLocked;
     }
 
 
     @Override
     public boolean isCredentialsNonExpired() {
+
         return this.isCredentialsNonExpired;
     }
 
     
     @Override
     public boolean isEnabled() {
+
         return this.isEnabled;
     }
 
 
     @Override
     public String toString() {
+
         return this.email;
     }
     
     
-//////// 
-    
-    
-    private int calculateAge() {
+    public int calculateAge() {
+
         return (int) birthday.until(LocalDate.now(), ChronoUnit.YEARS);
     }
 }

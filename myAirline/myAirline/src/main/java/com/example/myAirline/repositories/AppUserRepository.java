@@ -12,4 +12,6 @@ import com.example.myAirline.models.AppUser;
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
     Optional<AppUser> findByEmail(String email);
+
+    Boolean existsByEmail(String email);
 }

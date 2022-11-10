@@ -22,12 +22,14 @@ public class AppUserController {
     
     @PostMapping("/addNew")
     public AppUser addNew(@RequestBody AppUser appUser) {
+
         return appUserService.addNew(appUser);
     }
 
 
     @GetMapping("/getByUserName") 
     public AppUser getByUserName(@RequestParam("userName") String userName) {
+        
         return appUserService.getByEmail(userName);
     }
 }

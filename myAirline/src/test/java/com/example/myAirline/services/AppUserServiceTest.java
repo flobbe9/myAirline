@@ -1,6 +1,8 @@
 package com.example.myAirline.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 
@@ -28,20 +30,29 @@ public class AppUserServiceTest {
                                           "password",
                                           AppUserRole.USER,
                                           "Florin",
-                                          "Schikarski",
+                                          "Schaikarski",
                                           LocalDate.of(2001, 02, 12));
 
 
     @Test
     @Order(1)
     void testAddNew() {
-        assertEquals(appUser, appUserService.addNew(appUser));
+
+        AppUser addedAppUser = appUserService.addNew(appUser);
+
+        assertEquals(appUser, addedAppUser);
+
+        assertEquals(21, addedAppUser.getAge());
+
+        assertNotEquals("password", addedAppUser.getPassword());
+
+        assertThrows(IllegalStateException.class, () -> appUserService.addNew(appUser));
     }
 
 
     @Test
-    @Order(2)
     void testGetByEmail() {
+
         assertEquals(appUser, appUserService.getByEmail("florin.schikarski@gmail.com"));
     }
 }

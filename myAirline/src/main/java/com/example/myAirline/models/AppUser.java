@@ -18,7 +18,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.myAirline.enums.AppUserRole;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,16 +27,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 public class AppUser implements UserDetails {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Exclude
     private Long id;
 
     @Column(nullable = false, unique = true)
-    @EqualsAndHashCode.Include
     private String email;
 
     @Column(nullable = false)
@@ -60,16 +56,12 @@ public class AppUser implements UserDetails {
 
     // private List<Booking> bookings; // TODO: uncomment when Booking is created
 
-    @EqualsAndHashCode.Exclude
     private Boolean isAccountNonExpired = true;
 
-    @EqualsAndHashCode.Exclude
     private Boolean isAccountNonLocked = true;
 
-    @EqualsAndHashCode.Exclude
     private Boolean isCredentialsNonExpired = true;
 
-    @EqualsAndHashCode.Exclude
     private Boolean isEnabled = false;
 
 
@@ -136,6 +128,19 @@ public class AppUser implements UserDetails {
     public String toString() {
 
         return this.email;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) 
+            return true;
+
+        if (obj != null && obj instanceof AppUser) 
+            return this.email.equals(((AppUser)(obj)).getEmail());
+
+        return false;
     }
     
     

@@ -36,7 +36,7 @@ public class AppUserServiceTest {
 
     @Test
     @Order(1)
-    void testAddNew() {
+    void testAddNew() { 
 
         AppUser addedAppUser = appUserService.addNew(appUser);
 

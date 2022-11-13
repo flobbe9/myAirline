@@ -8,6 +8,8 @@ gradle/wrapper/**
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+outputResources/**
+
 ### STS ###
 .apt_generated
 .classpath

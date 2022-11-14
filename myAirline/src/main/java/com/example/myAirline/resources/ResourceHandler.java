@@ -27,10 +27,10 @@ import com.lowagie.text.DocumentException;
 public class ResourceHandler {
 
     /** Html files with the email message. */
-    public static final String HTML_TEMPLATES_PATH = "./mail/html/templates";
+    public static final String HTML_TEMPLATES_PATH = "./mail/templates/";
 
     /** Html files with the email attachment content. */
-    public static final String HTML_ATTACHMENTS_PATH = "./mail/html/attachments/";
+    public static final String HTML_ATTACHMENTS_PATH = "./mail/attachments/";
     
     /** Pdf files created as email attachment. */
     public static final String PDF_ATTACHMENTS_PATH = "./outputResources/attachments/";
@@ -59,7 +59,7 @@ public class ResourceHandler {
             return htmlString;
 
         } catch (NullPointerException e) {
-            throw new IllegalStateException("Could not find this html file.");
+            throw new IllegalStateException("Could not find html file at path " + htmlPath + ".");
         }
     }
 
@@ -77,7 +77,7 @@ public class ResourceHandler {
     public static void stringToPdf(String str, String pdfTargetDir, String pdfName) throws IOException, DocumentException {
 
         // creating targetDir 
-        createOuputDir(pdfTargetDir);
+        createOutputDir(pdfTargetDir);
 
         try (OutputStream outputStream = new FileOutputStream(pdfTargetDir + pdfName)) {
             
@@ -112,23 +112,25 @@ public class ResourceHandler {
             return ResourceHandler.class.getResourceAsStream(relativePath);
 
         } catch (NullPointerException e) {
-            throw new IllegalStateException("Could not find the resource at this path.");
+            throw new IllegalStateException("Could not find the resource at path " + relativePath + ".");
         }
     }
 
 
     /**
-     * Creates any directory or directories at the specified path. 
+     * Creates any directory or directories at the specified path if they don't already exist.
      * 
-     * @param targetDir path of the directory to create relative to the execution folder (where some command like
-     *                  'gradle bootRun' is run).
-     * @return true if dir was created successfully.
+     * @param dir path of the directory to create relative to the execution folder (where some command like
+     *            'gradle bootRun' is run).
+     * @return true if dir was created successfully or already existed.
      * @throws IllegalStateException if target directory could not be created.
      */
-    private static boolean createOuputDir(String targetDir) {
+    private static boolean createOutputDir(String dir) {
 
-        if (!new File(targetDir).mkdirs())
-            throw new IllegalStateException("Failed to create output directory for pdf file.");
+        File targetDir = new File(dir);
+
+        if (!targetDir.exists() && !targetDir.mkdirs())
+            throw new IllegalStateException("Failed to create output directory at path " + targetDir + ".");
 
         return true;
     }

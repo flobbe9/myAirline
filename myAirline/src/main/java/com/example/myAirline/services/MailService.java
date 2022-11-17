@@ -32,12 +32,12 @@ public class MailService {
     public void send(String to, String subject, String text, File attachment) throws MessagingException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "utf-8");
 
         mimeMessageHelper.setTo(to);
         mimeMessageHelper.setFrom(SENDER_EMAILADRESS);
         mimeMessageHelper.setSubject(subject);
-        mimeMessageHelper.setText(text);
+        mimeMessageHelper.setText(text, true);
         
         if (attachment != null)
             mimeMessageHelper.addAttachment(attachment.getName(), attachment);

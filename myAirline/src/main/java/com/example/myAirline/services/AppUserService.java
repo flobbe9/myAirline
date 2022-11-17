@@ -1,6 +1,9 @@
 package com.example.myAirline.services;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,7 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.myAirline.models.AppUser;
+import com.example.myAirline.models.ConfirmationToken;
 import com.example.myAirline.repositories.AppUserRepository;
+import com.example.myAirline.resources.ResourceHandler;
 
 
 @Service
@@ -22,21 +27,56 @@ public class AppUserService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private ConfirmationTokenService confirmationTokenService;
+
+    @Autowired
+    private MailService mailService;
+
+    private static final String ACCOUNT_CONFIRMATION_EMAIL = "accountConfirmation.html";
+
+    private static final String ACCOUNT_CONFIRMATION_EMAIL_SUBJECT = "myAirline | Confirm your account";
+
 
     public AppUser addNew(AppUser appUser) {
 
         validate(appUser);
 
-        if (exists(appUser)) 
+        // case: appUser with this email does already exist
+        if (exists(appUser.getEmail())) 
             throw new IllegalStateException("User with email " + appUser.getEmail() + " does already exist.");
 
         appUser.setAge(appUser.calculateAge());
 
         appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
 
-        // TODO: send confirmation email
+        // confirm account
+        ConfirmationToken confirmationToken = 
+                confirmationTokenService.saveConfirmationToken(new ConfirmationToken(LocalDateTime.now().plusMinutes(15), 
+                                                                                     appUser.getEmail()));
+
+        // sending confirmation email
+        sendConfirmationEmail(appUser, confirmationToken);
 
         return appUserRepository.save(appUser);
+    }
+
+
+    /**
+     * Making sure the confirmation token is valid, enabling appUser and setting 'confirmed at' of ConfirmationToken.
+     * 
+     * @param token unique token of ConfirmationToken.
+     */
+    public void confirmAccount(String token) {
+
+        // set 'confirmed at'
+        ConfirmationToken confirmationToken = confirmationTokenService.confirm(token);
+
+        AppUser appUser = getByEmail(confirmationToken.getAppUserEmail());
+
+        appUser.setIsEnabled(true);
+
+        appUserRepository.save(appUser);
     }
 
 
@@ -52,6 +92,12 @@ public class AppUserService implements UserDetailsService {
         
         return appUserRepository.findByEmail(username).orElseThrow(() -> 
             new UsernameNotFoundException("Could not find user: " + username));
+    }
+
+
+    public boolean exists(String email) {
+
+        return appUserRepository.existsByEmail(email);
     }
 
 
@@ -74,8 +120,29 @@ public class AppUserService implements UserDetailsService {
     }
 
 
-    private boolean exists(AppUser appUser) {
+    /**
+     * Sends confirmation email to a user who tried to sign up. Contains the confirmation token which is 
+     * send back via /appUser/confirmAccount.
+     * 
+     * @param appUser to send the email to.
+     * @param confirmationToken with the token to send back.
+     * @throws IllegalStateException if the email html file is not found or the email could not be sent.
+     */
+    private void sendConfirmationEmail(AppUser appUser, ConfirmationToken confirmationToken) {
 
-        return appUserRepository.existsByEmail(appUser.getEmail());
+        // convert html text to String
+        String text = ResourceHandler.htmlToString(ResourceHandler.HTML_TEMPLATES_PATH + ACCOUNT_CONFIRMATION_EMAIL, 
+                                                   appUser.getFirstName(), 
+                                                   confirmationToken.getToken());
+
+        // send email
+        new Thread(() -> {
+            try {
+                mailService.send(appUser.getEmail(), ACCOUNT_CONFIRMATION_EMAIL_SUBJECT, text, null);
+
+            } catch (MessagingException e) {
+                throw new IllegalStateException(e.getMessage());
+            }
+        }).start();
     }
 }

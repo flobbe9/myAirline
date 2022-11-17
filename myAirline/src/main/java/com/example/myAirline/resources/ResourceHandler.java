@@ -45,7 +45,7 @@ public class ResourceHandler {
      * @throws IOException if the html file is not found.
      * @throws MissingArgumentException if 'fillers' has not enough arguments or the wrong argument types.
      */
-    public static String htmlToString(String htmlPath, Object... fillers) throws IOException {
+    public static String htmlToString(String htmlPath, Object... fillers) {
 
         try (InputStreamReader isr = new InputStreamReader(getInputStream(htmlPath));
              BufferedReader br = new BufferedReader(isr)) {
@@ -59,6 +59,9 @@ public class ResourceHandler {
             return htmlString;
 
         } catch (NullPointerException e) {
+            throw new IllegalStateException("Could not find html file at path " + htmlPath + ".");
+
+        } catch (IOException e) {
             throw new IllegalStateException("Could not find html file at path " + htmlPath + ".");
         }
     }

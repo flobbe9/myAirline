@@ -1,10 +1,10 @@
-HELP.md
+### Gradle ###
 .gradle
 settings.gradle
 gradlew.bat
 gradlew
 build/
-gradle/wrapper/**
+gradle/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
@@ -40,3 +40,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Other ###
+todo.md
+HELP.md
+outputResources/**

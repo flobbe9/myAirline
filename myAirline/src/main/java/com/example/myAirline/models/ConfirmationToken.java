@@ -14,6 +14,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+/**
+ * Class defining a token which is sent in an email to an app user, who signed up for myAirline.
+ * If the token is sent back in time via the provided link (or button), the app user will be enabled.
+ * 
+ * @since 1.0
+ * @author Florin Schikarski
+ */
 @Entity
 @Getter
 @Setter

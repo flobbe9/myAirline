@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.example.myAirline.models.ConfirmationToken;
 
 
+/**
+ * JpaRepository writing queries for the ConfirmationToken entity.
+ * 
+ * @since 1.0
+ * @author Florin Schikarski
+ */
 @Repository
 public interface ConfirmationTokenRepository extends JpaRepository<ConfirmationToken, Long> {
     

@@ -1,4 +1,4 @@
-package com.example.myAirline.services;
+package com.example.myAirline.config;
 
 import java.io.File;
 
@@ -6,13 +6,19 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
 
 
-@Service
-public class MailService {
+/**
+ * Configuration for seding an email.
+ * 
+ * @since 1.0
+ * @author Florin Schikarski
+ */
+@Configuration
+public class MailConfig {
     
     @Autowired
     private JavaMailSender javaMailSender;

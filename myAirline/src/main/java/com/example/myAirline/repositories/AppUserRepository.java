@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.example.myAirline.models.AppUser;
 
 
+/**
+ * JpaRepository writing queries for the AppUser entity.
+ * 
+ * @since 1.0
+ * @author Florin Schikarski
+ */
 @Repository
 public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 

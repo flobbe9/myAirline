@@ -9,6 +9,12 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 
+/**
+ * Configuration for automatic swagger documentation.
+ * 
+ * @since 1.0
+ * @author Florin Schikarski
+ */
 @Configuration
 public class SpringFoxConfig {
     

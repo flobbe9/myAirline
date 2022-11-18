@@ -16,7 +16,11 @@ import lombok.AllArgsConstructor;
 
 
 /**
- * Defines the ROLE of an AppUser needed for a GrantedAuthority. Each role has multple permissions ({@link AppUserPermission}).
+ * Defines the ROLE of an AppUser needed for a GrantedAuthority. Each role has multple permissions.
+ * 
+ * @see AppUserPermission
+ * @since 1.0
+ * @author Florin Schikarski
  */
 @AllArgsConstructor
 public enum AppUserRole {

@@ -15,6 +15,13 @@ import com.example.myAirline.models.AppUser;
 import com.example.myAirline.services.AppUserService;
 
 
+/**
+ * Controller for all endpoints directly related to the AppUserService.
+ * 
+ * @see AppUserService
+ * @since 1.0
+ * @author Florin Schikarski
+ */
 @RestController
 @RequestMapping("/appUser")
 public class AppUserController {

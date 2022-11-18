@@ -9,6 +9,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 
+/**
+ * Configuration for security and password encoding.
+ * 
+ * @since 1.0
+ * @author Florin Schikarski
+ */
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig {

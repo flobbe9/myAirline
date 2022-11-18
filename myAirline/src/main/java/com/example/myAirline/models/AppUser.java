@@ -23,6 +23,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+/**
+ * Class defining an app user in myAirline. 
+ * <p>
+ * Implements UserDetails for spring security.
+ * 
+ * @since 1.0
+ * @author Florin Schikarski
+ */
 @Entity
 @NoArgsConstructor
 @Getter

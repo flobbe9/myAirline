@@ -23,6 +23,9 @@ import com.lowagie.text.DocumentException;
  * <p>
  * Makes it possible to input relative paths instead of absolute ones so resources can be accessed in a packaged files
  * (e.g. in a .jar) as well.
+ * 
+ * @since 1.0
+ * @author Florin Schikarski
  */
 public class ResourceHandler {
 

@@ -9,6 +9,12 @@ import com.example.myAirline.models.ConfirmationToken;
 import com.example.myAirline.repositories.ConfirmationTokenRepository;
 
 
+/**
+ * Class providing the more complex methods for the ConfirmationToken class.
+ * 
+ * @since 1.0
+ * @author Florin Schikarski
+ */
 @Service
 public class ConfirmationTokenService {
     

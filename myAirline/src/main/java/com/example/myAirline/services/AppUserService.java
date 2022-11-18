@@ -12,12 +12,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.myAirline.config.MailConfig;
 import com.example.myAirline.models.AppUser;
 import com.example.myAirline.models.ConfirmationToken;
 import com.example.myAirline.repositories.AppUserRepository;
 import com.example.myAirline.resources.ResourceHandler;
 
 
+/**
+ * Class providing the more complex methods for the AppUser class.
+ * 
+ * @see AppUser
+ * @since 1.0
+ * @author Florin Schikarski 
+ */
 @Service
 public class AppUserService implements UserDetailsService {
 
@@ -31,7 +39,7 @@ public class AppUserService implements UserDetailsService {
     private ConfirmationTokenService confirmationTokenService;
 
     @Autowired
-    private MailService mailService;
+    private MailConfig mailConfig;
 
     private static final String ACCOUNT_CONFIRMATION_EMAIL = "accountConfirmation.html";
 
@@ -138,7 +146,7 @@ public class AppUserService implements UserDetailsService {
         // send email
         new Thread(() -> {
             try {
-                mailService.send(appUser.getEmail(), ACCOUNT_CONFIRMATION_EMAIL_SUBJECT, text, null);
+                mailConfig.send(appUser.getEmail(), ACCOUNT_CONFIRMATION_EMAIL_SUBJECT, text, null);
 
             } catch (MessagingException e) {
                 throw new IllegalStateException(e.getMessage());

@@ -10,6 +10,9 @@ gradle/
 
 outputResources/**
 
+### Docker ###
+Dockerfile
+
 ### STS ###
 .apt_generated
 .classpath
@@ -42,6 +45,5 @@ out/
 .vscode/
 
 ### Other ###
-todo.md
 HELP.md
 outputResources/**

@@ -1,7 +1,7 @@
 package com.example.myAirline.enums;
 
 
-/*
+ /**
  * Enum representing a continent.
  * 
  * @since 1.0

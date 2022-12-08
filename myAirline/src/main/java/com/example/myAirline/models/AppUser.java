@@ -41,7 +41,7 @@ public class AppUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
@@ -62,7 +62,8 @@ public class AppUser implements UserDetails {
 
     private Integer age;
 
-    // private List<Booking> bookings; // TODO: uncomment when Booking is created
+    // private List<Booking> bookings;
+    // TODO: impelemnt
 
     private Boolean isAccountNonExpired = true;
 

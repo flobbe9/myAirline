@@ -44,7 +44,6 @@ public class MailConfig {
         mimeMessageHelper.setFrom(SENDER_EMAILADRESS);
         mimeMessageHelper.setSubject(subject);
         mimeMessageHelper.setText(text, true);
-        
         if (attachment != null)
             mimeMessageHelper.addAttachment(attachment.getName(), attachment);
         

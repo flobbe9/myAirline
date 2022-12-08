@@ -17,6 +17,11 @@ import com.lowagie.text.DocumentException;
 @AutoConfigureMockMvc
 public class ResourceHandlerTest {
 
+    /**
+     * Should convert the test.html into the correct string.
+     * 
+     * @throws IOException if test.html is not found.
+     */
     @Test
     void testHtmlToString() throws IOException {
 
@@ -28,6 +33,12 @@ public class ResourceHandlerTest {
     }
 
 
+    /**
+     * Should put the test String into a pdf and store it at: ./outputResources/attachments/test.pdf.
+     * 
+     * @throws IOException
+     * @throws DocumentException
+     */
     @Test
     void testStringToPdf() throws IOException, DocumentException {
 

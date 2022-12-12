@@ -7,7 +7,5 @@ jobs:
     steps:
       - name: Checkout repository 
         uses: actions/checkout@v3
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+      - name: Run every spring-boot test
+        run: cd myAirline | gradle test

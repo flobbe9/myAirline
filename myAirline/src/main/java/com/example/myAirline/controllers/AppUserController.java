@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.myAirline.models.AppUser;
 import com.example.myAirline.services.AppUserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 
 /**
  * Controller for all endpoints directly related to the AppUserService.
@@ -24,6 +30,8 @@ import com.example.myAirline.services.AppUserService;
  */
 @RestController
 @RequestMapping("/appUser")
+@Api(tags = {"AppUser endpoint"})
+@Tag(name = "AppUser endpoint")
 public class AppUserController {
 
     @Autowired
@@ -31,6 +39,10 @@ public class AppUserController {
 
     
     @PostMapping("/addNew")
+    @ApiOperation(value = "Save AppUser to db.")
+    @ApiResponses(value = {
+        // @ApiResponse()
+    })
     public AppUser addNew(@RequestBody AppUser appUser) {
 
         return appUserService.addNew(appUser);
@@ -38,6 +50,10 @@ public class AppUserController {
 
 
     @GetMapping("/getByUserName") 
+    @ApiOperation(value = "Get AppUser by username.")
+    @ApiResponses(value = {
+        // @ApiResponse(code = )
+    })
     public AppUser getByUserName(@RequestParam("userName") String userName) {
         
         return appUserService.getByEmail(userName);
@@ -46,6 +62,10 @@ public class AppUserController {
 
     @GetMapping("/confirmAccount/{token}")
     @ResponseStatus(value = HttpStatus.OK, reason = "Confirmed")
+    @ApiOperation(value = "Enable AppUser.")
+    @ApiResponses(value = {
+        // @ApiResponse()
+    })
     public void confirmAccount(@PathVariable String token) {
 
         appUserService.confirmAccount(token);

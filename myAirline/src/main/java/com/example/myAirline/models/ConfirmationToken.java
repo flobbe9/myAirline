@@ -42,7 +42,7 @@ public class ConfirmationToken {
     private LocalDateTime confirmedAt;
 
     @Column(nullable = false)
-    private String appUserEmail;
+    private String appUserEmail; // TODO: put real appUser here
 
 
     public ConfirmationToken(LocalDateTime expiresAt, 

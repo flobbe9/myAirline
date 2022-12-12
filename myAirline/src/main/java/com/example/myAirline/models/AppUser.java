@@ -3,20 +3,27 @@ package com.example.myAirline.models;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.myAirline.enums.AppUserRole;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +31,7 @@ import lombok.Setter;
 
 
 /**
- * Class defining an app user in myAirline. 
+ * Class defining a user of myAirline. 
  * <p>
  * Implements UserDetails for spring security.
  * 
@@ -41,36 +48,44 @@ public class AppUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotEmpty
     private String email;
 
-    @Column(nullable = false)
+    @NotEmpty
+    @Length(min = 5)
     private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false) 
     private AppUserRole role;
 
-    @Column(nullable = false)
+    @NotEmpty
     private String firstName;
 
-    @Column(nullable = false)
+    @NotEmpty
     private String lastName;
 
-    @Column(nullable = false)
+    @NotNull
     private LocalDate birthday;
 
     private Integer age;
 
-    // private List<Booking> bookings;
-    // TODO: impelemnt
+    @OneToMany(fetch = FetchType.LAZY, 
+               cascade = CascadeType.ALL,
+               mappedBy = "appUser")
+    @JsonManagedReference
+    @NotNull
+    private List<Booking> bookings = new LinkedList<>();
 
+    @NotNull
     private Boolean isAccountNonExpired = true;
 
+    @NotNull
     private Boolean isAccountNonLocked = true;
 
+    @NotNull
     private Boolean isCredentialsNonExpired = true;
 
+    @NotNull
     private Boolean isEnabled = false;
 
 

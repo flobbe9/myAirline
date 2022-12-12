@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is testing myAirline.
 on: [push]
 jobs:
   Spring-Api:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository 
         uses: actions/checkout@v3

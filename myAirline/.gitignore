@@ -8,8 +8,6 @@ gradle/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-outputResources/**
-
 ### Docker ###
 Dockerfile
 
@@ -46,4 +44,5 @@ out/
 
 ### Other ###
 HELP.md
-outputResources/**
+outputResources/
+inputResources/

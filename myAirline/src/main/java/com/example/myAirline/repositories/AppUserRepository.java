@@ -9,8 +9,9 @@ import com.example.myAirline.models.AppUser;
 
 
 /**
- * JpaRepository writing queries for the AppUser entity.
+ * Interface writing queries for the AppUser entity.
  * 
+ * @see AppUser
  * @since 1.0
  * @author Florin Schikarski
  */

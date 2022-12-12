@@ -9,8 +9,9 @@ import com.example.myAirline.models.ConfirmationToken;
 
 
 /**
- * JpaRepository writing queries for the ConfirmationToken entity.
+ * Interface writing queries for the ConfirmationToken entity.
  * 
+ * @see ConfirmationToken
  * @since 1.0
  * @author Florin Schikarski
  */

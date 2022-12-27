@@ -11,7 +11,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v3.9.0
         with:
-          # distribution: microsoft
+          distribution: microsoft
           java-version: '17'
       - name: Run every spring-boot test
         run: gradle clean build -p /myAirline

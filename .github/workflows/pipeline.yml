@@ -13,5 +13,5 @@ jobs:
         with:
           distribution: microsoft
           java-version: '17'
-      - name: Run every spring-boot test
+      - name: Run spring-boot tests
         run: gradle clean build -p /myAirline

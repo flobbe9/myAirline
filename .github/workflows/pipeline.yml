@@ -13,5 +13,6 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v3.9.0
         with:
+          distribution: microsoft
           java-version: '17'
         # TODO: setup java 17 somehow

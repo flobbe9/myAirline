@@ -47,8 +47,8 @@ public class AppUserServiceTest {
     }
 
 
-    @Test
-    // @Order(1)
+    // @Test
+    @Order(1)
     void testAddNew() { 
 
         AppUser addedAppUser = appUserService.addNew(appUser);

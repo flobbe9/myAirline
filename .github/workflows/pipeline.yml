@@ -8,11 +8,10 @@ jobs:
     steps:
       - name: Checkout repository 
         uses: actions/checkout@v3
-      - name: Run every spring-boot test
-        run: gradle clean build -p /myAirline
       - name: Setup Java JDK
         uses: actions/setup-java@v3.9.0
         with:
-          distribution: microsoft
+          # distribution: microsoft
           java-version: '17'
-        # TODO: setup java 17 somehow
+      - name: Run every spring-boot test
+        run: gradle clean build -p /myAirline

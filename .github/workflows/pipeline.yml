@@ -9,5 +9,5 @@ jobs:
       - name: Checkout repository 
         uses: actions/checkout@v3
       - name: Run every spring-boot test
-        run: cd myAirline | cd src | cd main | cd java
+        run: cd myAirline | gradle clean build
         # TODO: setup java 17 somehow

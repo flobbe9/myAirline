@@ -12,7 +12,7 @@ import com.example.myAirline.repositories.AirlineRepository;
  * 
  * @see Airline
  * @since 1.0
- * @author Florin Schikarski 
+ * @author Florin Schikarski
  */
 @Service
 public class AirlineService {

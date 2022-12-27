@@ -48,7 +48,7 @@ public class AppUserServiceTest {
 
 
     @Test
-    @Order(1)
+    // @Order(1)
     void testAddNew() { 
 
         AppUser addedAppUser = appUserService.addNew(appUser);
@@ -71,7 +71,7 @@ public class AppUserServiceTest {
     }
 
 
-    @Test
+    // @Test
     void testGetByEmail() {
 
         assertEquals(appUser, appUserService.getByEmail("florin.schikarski@gmail.com"));

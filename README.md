@@ -10,11 +10,16 @@ Features not yet included:
 ## Run
 1. ```docker-compose up``` with 'docker-compose.yml' file from this repo.
 2. Go to http://localhost:3000.
-
+3. Searches  that'll work: <br> 
+- Berlin airport -> Dortmund airport
+- Muenchner airport -> Hamburg airport
+- Dresden airport -> Muenchner airport
+- Hannover airport -> Nuernberg airport
+- Erfurt airport -> Koeln airport
+- Friedrichshaven airport -> Mannheim airport
 
 ## Postman
 <a href="https://www.postman.com/grey-shuttle-863417/workspace/myairline/collection/23751197-f9d2f14d-902a-4721-99b2-2fc597c86abe?action=share&creator=23751197">myAirlineCollection</a>
-
 
 ## GitHub
 Backend: 

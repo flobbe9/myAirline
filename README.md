@@ -13,7 +13,7 @@ Features not yet included:
 
 
 ## Postman
-<a target="_blank" href="https://www.postman.com/grey-shuttle-863417/workspace/myairline/collection/23751197-f9d2f14d-902a-4721-99b2-2fc597c86abe?action=share&creator=23751197">myAirlineCollection</a>
+<a href="https://www.postman.com/grey-shuttle-863417/workspace/myairline/collection/23751197-f9d2f14d-902a-4721-99b2-2fc597c86abe?action=share&creator=23751197" target="_blank" >myAirlineCollection</a>
 
 
 ## GitHub

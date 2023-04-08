@@ -1,6 +1,6 @@
 # myAirline
 Portfolio project simulating a flight booking system.<br>
-Api uses React.js for frontend, Spring-Boot for backend and MySQL as database. 
+Api uses React.js for frontend, Spring-Boot for backend and Postgres as database. 
 
 Features not yet included: 
 - User login/register
@@ -33,7 +33,7 @@ Frontend:
 ## Docker images
 Backend: <br>
 ```docker pull flobbe10/myairline-flightservice``` <br>
-```docker pull mysql```
+```docker pull postgres```
 
 Frontend: <br>
 ```docker pull flobbe10/myairline-frontend```

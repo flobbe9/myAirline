@@ -11,6 +11,20 @@ services:
             POSTGRES_PASSWORD: postgres
             POSTGRES_DB: myAirline
 
+    user-service:
+        image: flobbe10/myairline-userservice:0.0.1
+        build: .
+        container_name: myairline-userservice
+        ports: 
+            - 4002:4002
+        depends_on:
+            - db
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/myAirline
+            - SPRING_DATASOURCE_USERNAME=postgres
+            - SPRING_DATASOURCE_PASSWORD=postgres
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+
     flight-service:
         image: flobbe10/myairline-flightservice:0.0.1
         container_name: myairline-flightservice
@@ -23,7 +37,7 @@ services:
             - SPRING_DATASOURCE_USERNAME=postgres
             - SPRING_DATASOURCE_PASSWORD=postgres
             - SPRING_JPA_HIBERNATE_DDL_AUTO=create
-    
+
     frontend:
         image: flobbe10/myairline-frontend:0.0.1
         container_name: myairline-frontend
@@ -31,3 +45,4 @@ services:
             - 3000:3000
         depends_on:
             - flight-service
+            - users-ervice

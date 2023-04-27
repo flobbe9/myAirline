@@ -23,17 +23,17 @@ Features not yet included:
 
 ## GitHub
 Backend: 
-- https://github.com/flobbe10/myAirline-flightService 
-- https://github.com/flobbe10/myAirline-userService
+- https://github.com/flobbe9/myAirline-flightService 
+- https://github.com/flobbe9/myAirline-userService
 
 Frontend: 
-- https://github.com/flobbe10/myAirline-frontend 
+- https://github.com/flobbe9/myAirline-frontend 
 
 
 ## Docker images
 Backend: <br>
-```docker pull flobbe10/myairline-flightservice``` <br>
+```docker pull flobbe9/myairline-flightservice``` <br>
 ```docker pull postgres```
 
 Frontend: <br>
-```docker pull flobbe10/myairline-frontend```
+```docker pull flobbe9/myairline-frontend```

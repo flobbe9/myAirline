@@ -12,7 +12,7 @@ services:
             POSTGRES_DB: myAirline
 
     user-service:
-        image: flobbe10/myairline-userservice:0.0.1
+        image: flobbe9/myairline-userservice:0.0.1
         build: .
         container_name: myairline-userservice
         ports: 
@@ -26,7 +26,7 @@ services:
             - SPRING_JPA_HIBERNATE_DDL_AUTO=create
 
     flight-service:
-        image: flobbe10/myairline-flightservice:0.0.1
+        image: flobbe9/myairline-flightservice:0.0.1
         container_name: myairline-flightservice
         ports: 
             - 4001:4001
@@ -39,7 +39,7 @@ services:
             - SPRING_JPA_HIBERNATE_DDL_AUTO=create
 
     frontend:
-        image: flobbe10/myairline-frontend:0.0.1
+        image: flobbe9/myairline-frontend:0.0.1
         container_name: myairline-frontend
         ports:
             - 3000:3000
